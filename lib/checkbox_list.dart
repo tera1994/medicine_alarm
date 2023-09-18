@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'chackbox_model.dart';
+import 'checkbox_repository.dart';
 
 class CheckBoxList extends StatefulWidget {
   CheckBoxList({Key? key}) : super(key: key);
@@ -9,15 +10,23 @@ class CheckBoxList extends StatefulWidget {
 }
 
 class _CheckBoxListState extends State<CheckBoxList> {
-  bool _value1 = true;
-  List<CheckBoxModel> checkbox_model = [];
-  @override
+  final List<CheckBoxModel> _checkboxModel = [];
+  final CheckBoxRepository _checkboxRepository = CheckBoxRepository();
+
+  void initCheckBoxModle() async {
+    var checkData = await _checkboxRepository.getCheckData();
+    setState(() {
+      _checkboxModel
+          .add(CheckBoxModel(title: "Morning", isCheck: checkData["morning"]!));
+      _checkboxModel.add(
+          CheckBoxModel(title: "Afternoon", isCheck: checkData["afternoon"]!));
+      _checkboxModel
+          .add(CheckBoxModel(title: "Night", isCheck: checkData["night"]!));
+    });
+  }
+
   void initState() {
-    checkbox_model = <CheckBoxModel>[
-      CheckBoxModel(title: "Morning", isCheck: false),
-      CheckBoxModel(title: "Afternoon", isCheck: true),
-      CheckBoxModel(title: "Night", isCheck: true),
-    ];
+    initCheckBoxModle();
   }
 
   @override
@@ -28,18 +37,22 @@ class _CheckBoxListState extends State<CheckBoxList> {
         Text(DateTime.now().toString()),
         Expanded(
           child: ListView.builder(
-              itemCount: checkbox_model.length,
+              itemCount: _checkboxModel.length,
               itemBuilder: (BuildContext context, int index) {
                 return Card(
                   child: Column(
                     children: <Widget>[
                       CheckboxListTile(
                           activeColor: Colors.pink[300],
-                          title: Text(checkbox_model[index].title),
-                          value: checkbox_model[index].isCheck,
+                          title: Text(_checkboxModel[index].title),
+                          value: _checkboxModel[index].isCheck,
                           onChanged: (bool? val) {
                             setState(() {
-                              checkbox_model[index].isCheck = val!;
+                              _checkboxModel[index].isCheck = val!;
+                              _checkboxRepository.saveCheckData(
+                                  _checkboxModel[0].isCheck,
+                                  _checkboxModel[1].isCheck,
+                                  _checkboxModel[2].isCheck);
                             });
                           }),
                     ],
