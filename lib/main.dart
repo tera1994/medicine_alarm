@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'checkbox_list.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
+import 'package:timezone/data/latest_all.dart' as tz;
 import 'notification.dart' as nt;
+import 'package:flutter_timezone/flutter_timezone.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   tz.initializeTimeZones();
-  tz.setLocalLocation(tz.getLocation("Asia/Tokyo"));
+  final String timeZoneName = await FlutterTimezone.getLocalTimezone();
+  tz.setLocalLocation(tz.getLocation(timeZoneName));
 
   // flutter_local_notificationsの初期化
   const AndroidInitializationSettings initializationSettingsAndroid =
