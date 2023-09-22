@@ -27,6 +27,7 @@ class _CheckBoxListState extends State<CheckBoxList> {
 
   void initState() {
     initCheckBoxModel();
+    super.initState();
   }
 
   @override
@@ -59,7 +60,7 @@ class _CheckBoxListState extends State<CheckBoxList> {
                   ),
                 );
               }),
-        )
+        ),
       ],
     ));
   }

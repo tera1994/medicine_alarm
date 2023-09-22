@@ -1,7 +1,22 @@
 import 'package:flutter/material.dart';
 import 'checkbox_list.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:timezone/data/latest_all.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
+import 'notification.dart' as nt;
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  tz.initializeTimeZones();
+  tz.setLocalLocation(tz.getLocation("Asia/Tokyo"));
+
+  // flutter_local_notificationsの初期化
+  const AndroidInitializationSettings initializationSettingsAndroid =
+      AndroidInitializationSettings('@mipmap/ic_launcher');
+  const InitializationSettings initializationSettings = InitializationSettings(
+    android: initializationSettingsAndroid,
+  );
+  await FlutterLocalNotificationsPlugin().initialize(initializationSettings);
   runApp(const MyApp());
 }
 
@@ -32,6 +47,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  void initState() {
+    nt.Notification.scheduleMorningNotifications();
+    nt.Notification.scheduleAfternoonNotifications();
+    nt.Notification.scheduleNightNotifications();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
