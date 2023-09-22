@@ -13,7 +13,7 @@ class _CheckBoxListState extends State<CheckBoxList> {
   final List<CheckBoxModel> _checkboxModel = [];
   final CheckBoxRepository _checkboxRepository = CheckBoxRepository();
 
-  void initCheckBoxModle() async {
+  void initCheckBoxModel() async {
     var checkData = await _checkboxRepository.getCheckData();
     setState(() {
       _checkboxModel
@@ -26,7 +26,7 @@ class _CheckBoxListState extends State<CheckBoxList> {
   }
 
   void initState() {
-    initCheckBoxModle();
+    initCheckBoxModel();
   }
 
   @override
