@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
             ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 0, 255, 213)),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Medicine Alarm'),
+      home: const MyHomePage(title: 'Medication Confirmation Checklist'),
     );
   }
 }
