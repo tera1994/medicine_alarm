@@ -25,6 +25,11 @@ class _CheckBoxListState extends State<CheckBoxList> {
     });
   }
 
+  String getCurrentDate() {
+    var dateTimeSplited = DateTime.now().toString().split(" ");
+    return dateTimeSplited[0];
+  }
+
   void initState() {
     initCheckBoxModel();
     super.initState();
@@ -35,7 +40,10 @@ class _CheckBoxListState extends State<CheckBoxList> {
     return Scaffold(
         body: Column(
       children: [
-        Text(DateTime.now().toString()),
+        Text(
+          getCurrentDate(),
+          style: TextStyle(fontSize: 25),
+        ),
         Expanded(
           child: ListView.builder(
               itemCount: _checkboxModel.length,
@@ -60,6 +68,31 @@ class _CheckBoxListState extends State<CheckBoxList> {
                   ),
                 );
               }),
+        ),
+        SizedBox(
+          width: 150,
+          height: 50,
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Color.fromARGB(255, 0, 255, 213), //ボタンの背景色
+            ),
+            onPressed: () {
+              setState(() {
+                _checkboxModel[0].isCheck = false;
+                _checkboxModel[1].isCheck = false;
+                _checkboxModel[2].isCheck = false;
+                _checkboxRepository.saveCheckData(_checkboxModel[0].isCheck,
+                    _checkboxModel[1].isCheck, _checkboxModel[2].isCheck);
+              });
+            },
+            child: Text(
+              'Clear',
+              style: TextStyle(fontSize: 20),
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 50,
         ),
       ],
     ));
