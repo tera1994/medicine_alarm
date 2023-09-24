@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'ad_banner.dart';
 import 'chackbox_model.dart';
 import 'checkbox_repository.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class CheckBoxList extends StatefulWidget {
   CheckBoxList({Key? key}) : super(key: key);
@@ -92,8 +94,9 @@ class _CheckBoxListState extends State<CheckBoxList> {
           ),
         ),
         SizedBox(
-          height: 50,
+          height: 20,
         ),
+        AdBanner(size: AdSize.largeBanner),
       ],
     ));
   }
