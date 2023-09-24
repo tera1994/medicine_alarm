@@ -1,7 +1,7 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
 
-tz.TZDateTime _timeOf8AM() {
+tz.TZDateTime _timeOfMorning() {
   final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
   tz.TZDateTime scheduledDate =
       tz.TZDateTime(tz.local, now.year, now.month, now.day, 8);
@@ -11,7 +11,7 @@ tz.TZDateTime _timeOf8AM() {
   return scheduledDate;
 }
 
-tz.TZDateTime _timeOf12AM() {
+tz.TZDateTime _timeOfAfternoon() {
   final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
   tz.TZDateTime scheduledDate =
       tz.TZDateTime(tz.local, now.year, now.month, now.day, 11, 35);
@@ -21,7 +21,7 @@ tz.TZDateTime _timeOf12AM() {
   return scheduledDate;
 }
 
-tz.TZDateTime _timeOf22PM() {
+tz.TZDateTime _timeOfNight() {
   final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
   tz.TZDateTime scheduledDate =
       tz.TZDateTime(tz.local, now.year, now.month, now.day, 20, 25);
@@ -39,7 +39,7 @@ class Notification {
       0,
       'Medicine Time',
       'It\'s morning medicine time',
-      _timeOf8AM(),
+      _timeOfMorning(),
       const NotificationDetails(
         android: AndroidNotificationDetails(
           '1',
@@ -61,7 +61,7 @@ class Notification {
       1,
       'Medicine Time',
       'It\'s afternoon medicine time',
-      _timeOf12AM(),
+      _timeOfAfternoon(),
       const NotificationDetails(
         android: AndroidNotificationDetails(
           '2',
@@ -83,7 +83,7 @@ class Notification {
       2,
       'Medicine Time',
       'It\'s night medicine time',
-      _timeOf22PM(),
+      _timeOfNight(),
       const NotificationDetails(
         android: AndroidNotificationDetails(
           '3',

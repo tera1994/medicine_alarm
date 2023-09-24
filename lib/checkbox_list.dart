@@ -3,6 +3,7 @@ import 'ad_banner.dart';
 import 'chackbox_model.dart';
 import 'checkbox_repository.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'guide.dart';
 
 class CheckBoxList extends StatefulWidget {
   CheckBoxList({Key? key}) : super(key: key);
@@ -42,6 +43,20 @@ class _CheckBoxListState extends State<CheckBoxList> {
     return Scaffold(
         body: Column(
       children: [
+        Align(
+          alignment: Alignment.topRight,
+          child: TextButton(
+              onPressed: () => {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) {
+                      return Guide();
+                    }))
+                  },
+              child: const Text(
+                "Guide",
+                style: TextStyle(fontSize: 25),
+              )),
+        ),
         Text(
           getCurrentDate(),
           style: TextStyle(fontSize: 25),
