@@ -39,6 +39,13 @@ dependencies:
   flutter_local_notifications: ^15.1.1
   flutter_timezone: ^1.0.7
   google_mobile_ads: ^3.0.0
+  flutter_launcher_icons: ^0.13.1
+
+
+flutter_icons:       
+  android: true
+  ios: true
+  image_path: "assets/medicine_alarm.png"
 
 dev_dependencies:
   flutter_test:
