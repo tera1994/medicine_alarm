@@ -14,7 +14,7 @@ tz.TZDateTime _timeOfMorning() {
 tz.TZDateTime _timeOfAfternoon() {
   final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
   tz.TZDateTime scheduledDate =
-      tz.TZDateTime(tz.local, now.year, now.month, now.day, 11, 35);
+      tz.TZDateTime(tz.local, now.year, now.month, now.day, 12);
   if (scheduledDate.isBefore(now)) {
     scheduledDate = scheduledDate.add(const Duration(days: 1));
   }
@@ -24,7 +24,7 @@ tz.TZDateTime _timeOfAfternoon() {
 tz.TZDateTime _timeOfNight() {
   final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
   tz.TZDateTime scheduledDate =
-      tz.TZDateTime(tz.local, now.year, now.month, now.day, 20, 25);
+      tz.TZDateTime(tz.local, now.year, now.month, now.day, 20);
   if (scheduledDate.isBefore(now)) {
     scheduledDate = scheduledDate.add(const Duration(days: 1));
   }

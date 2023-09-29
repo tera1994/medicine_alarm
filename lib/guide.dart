@@ -23,7 +23,7 @@ class Guide extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.fiber_manual_record),
               title: Text(
-                'This app will notify you of medicine time at 8am/12pm/9pm.',
+                'This app will notify you of medicine time at 8am/12pm/8pm.',
                 style: TextStyle(fontSize: 20),
               ),
             ),
